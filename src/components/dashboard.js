@@ -1,25 +1,26 @@
 //timer, moves, reset
 
 import {connect} from 'react-redux';
-// import {reducerFunctions} from '/reducers/'
+import { refresh } from '../reducers/dashboard-reducer';
 // import {reducerFunctions} from '/reducers/'
 
 //reducer functions go here
-const mapDispatchToProps = {};
+const mapDispatchToProps = { refresh };
 
 function Dashboard(props){
 
-
   return(
     <section>
-      <section>game over</section>
-      <section>dashboard info goes here</section>
+      <div className="timer">Timer</div>
+      <div className="game-moves">Number of Moves: {props.gameMoves / 2}</div>
+      <div className="refresh-icon">Refresh icon</div>
     </section>
   )
 }
 
 const mapStateToProps = state =>({
-  state
+  state,
+  gameMoves: state.gameState,
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Dashboard)
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
