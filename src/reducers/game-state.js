@@ -120,17 +120,25 @@ const gameSwitchboard = (state=initialState, action) => {
 
       console.log('GAME-STATE gameSwitchboard ', {payload});
 
-      let updatedGameBoard = state.currentBoard.map(card => {
-        if(card.cardID === payload){
-          if(card.faceUP === true) return;
-          if(card.matched === true) return;
-          if(card.faceUp === false) {
-            state.currentBoard.map(cardTwo => {
-              if(cardTwo.faceUp === true && cardTwo.matched !== true){
-                if(card.cardID === cardTwo.cardID){
-                  card.matched = true;
-                  card.faceUp = true;
+      let updatedGameBoard = state.currentBoard.map(card => { // looks through current game board
+        if(card.cardID === payload){ //if clicked card matches a card in the game board do the following
+          if(card.faceUP === true) return; //if the clicked card is already face up, do nothing
+          if(card.matched === true) return; //if the card is already matched, do nothing
+          if(card.faceUp === false) { //if the card is not currently face up do the following
+            state.currentBoard.map(cardTwo => { //look through all game cards
+              if(cardTwo.faceUp === true && cardTwo.matched !== true){ //if another card is faceup and not already matched do the following
+                if(card.cardID === cardTwo.cardID){ //if the clicked card and the faceup card match do the following
+                  card.matched = true; //set the clicked card's matched to true
+                  card.faceUp = true; //set the clicked card's faceUp to true
+                  return; //exit map (this might not be correct)
+                } else { //if the clicked card and the face up card do not match do th following
+                  card.faceUp = false; //turn clicked card face down
+                  cardTwo.faceUp = false; //turn the other card face down
+                  return; //exit map (this may be wrong)
                 }
+              } else { //if no other card is already face up, leave the clicked card face up
+                card.faceUp = true; 
+                return; //exit map
               }
             })
           }
