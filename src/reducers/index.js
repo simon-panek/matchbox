@@ -1,13 +1,13 @@
 import {createStore, combineReducers} from 'redux';
-
 import {composeWithDevTools} from 'redux-devtools-extension';
 
-// import reducer from './reducerfile';
-// import reducer from './reducerfile';
+import dashboard from './dashboard-reducer';
+import gameState from './game-state';
 // import reducer from './reducerfile';
 
+
 //imported reducers go here
-let reducers = combineReducers({  })
+let reducers = combineReducers({ dashboard, gameState })
 
 const store = ()=>{
   return createStore(reducers, composeWithDevTools());
