@@ -12,8 +12,8 @@ function App() {
     <div className="App">
       
       <BrowserRouter>
-        <MatchBoard />
         <Dashboard />
+        <MatchBoard />
       </BrowserRouter>
 
     </div>

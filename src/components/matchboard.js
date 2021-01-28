@@ -2,36 +2,40 @@
 
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-// import {reducerFunctions} from '/reducers/'
+import {newGame, flipCard} from '../reducers/game-state'
 // import {reducerFunctions} from '/reducers/'
 
 //reducer functions go here
-const mapDispatchToProps = {};
+const mapDispatchToProps = {newGame, flipCard};
 
 function MatchBoard(props){
 
-  
+  useEffect(()=>{
+    props.newGame();
+  }, [])
 
-  const tileSelector=(tileData)=>{
+
+
+  const tileSelector=(cardID)=>{
+    console.log({cardID});
     // (if) first selection ? send call to start timer and flip card : (else) flip card
     // (if) faceup === true ? do not increment counter : (else) increment counter
     // (if) 2 selections are not the same ? flip them back : (else) leave them flipped (and change color?)
     // (if) game is over ? clickCounter/2, stop timer, send to game-over : (else) continue
 
-    props.gameStateFunction(tileData)
+    props.flipCard(cardID)
   }
 
 
   return(
     <section >
-      <dashboard />
-
+      <section>Proof of Life</section>
       <section id="gameboard">
         {props.gameboardState.map((tileData, index)=>(
 
           <section key={index} id="gameboard-cell-parent">
 
-            <section onClick={()=>tileSelector(tileData)} id="gameboard-cell"><img src={props.image}></img>cell</section>
+            <section onClick={()=>tileSelector(tileData.cardID)} id="gameboard-cell"><img src={tileData.cardPath}></img>cell</section>
               
           </section>
         ))}
@@ -43,8 +47,8 @@ function MatchBoard(props){
 
 const mapStateToProps = state =>({
   state,
-  gameboardImages: state.currentBoard
-  // gameboardState: state.gameStateCombinedReducersFromIndex.
+  // gameboardImages: state.gameState,
+  gameboardState: state.gameState.currentBoard
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(MatchBoard)
