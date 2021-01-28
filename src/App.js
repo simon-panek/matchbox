@@ -6,7 +6,6 @@ import Dashboard from './components/dashboard';
 // import Matchboard from './components/matchboard';
 // import Gameover from './components/game-over';
 
-
 function App() {
   return (
     <div className="App">
