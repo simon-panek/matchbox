@@ -10,23 +10,23 @@ let initialState = {
 }
 
 const  images = [
-    { cardID: 1, cardPath: 'public/assets/alvarado_mariko.jpeg', faceUp: false, matched: false }, 
-    { cardID: 2, cardPath: 'public/assets/ayoub_dina.jpeg', faceUp: false, matched: false }, 
-    { cardID: 3, cardPath: 'public/assets/barcenas_ricardo.jpg', faceUp: false, matched: false }, 
-    { cardID: 4, cardPath: 'public/assets/billakanti_sowmya.jpg', faceUp: false, matched: false }, 
-    { cardID: 5, cardPath: 'public/assets/brown_aysia.jpg', faceUp: false, matched: false }, 
-    { cardID: 6, cardPath: 'public/assets/burris_stacy.jpg', faceUp: false, matched: false }, 
-    { cardID: 7, cardPath: 'public/assets/cintron_garrett.jpg', faceUp: false, matched: false }, 
-    { cardID: 8, cardPath: 'public/assets/cox_nathan.jpg', faceUp: false, matched: false }, 
-    { cardID: 9, cardPath: 'public/assets/eivy_lena.jpg', faceUp: false, matched: false }, 
-    { cardID: 10, cardPath: 'public/assets/martin_andre.jpg', faceUp: false, matched: false }, 
-    { cardID: 11, cardPath: 'public/assets/moore_ashley.jpeg', faceUp: false, matched: false }, 
-    { cardID: 12, cardPath: 'public/assets/myers_tina.jpg', faceUp: false, matched: false }, 
-    { cardID: 13, cardPath: 'public/assets/panek_simon.jpg', faceUp: false, matched: false }, 
-    { cardID: 14, cardPath: 'public/assets/penning_jeremy.jpeg', faceUp: false, matched: false }, 
-    { cardID: 15, cardPath: 'public/assets/ravenmoore_matt.jpeg', faceUp: false, matched: false }, 
-    { cardID: 16, cardPath: 'public/assets/ringer_tahmina.jpeg', faceUp: false, matched: false }, 
-    { cardID: 17, cardPath: 'public/assets/strasner_sara.jpg', faceUp: false, matched: false } 
+    { cardID: 1, cardPath: '../../public/assets/alvarado_mariko.jpeg', faceUp: false, matched: false }, 
+    { cardID: 2, cardPath: '../../public/assets/ayoub_dina.jpeg', faceUp: false, matched: false }, 
+    { cardID: 3, cardPath: '../../public/assets/barcenas_ricardo.jpg', faceUp: false, matched: false }, 
+    { cardID: 4, cardPath: '../../public/assets/billakanti_sowmya.jpg', faceUp: false, matched: false }, 
+    { cardID: 5, cardPath: '../../public/assets/brown_aysia.jpg', faceUp: false, matched: false }, 
+    { cardID: 6, cardPath: '../../public/assets/burris_stacy.jpg', faceUp: false, matched: false }, 
+    { cardID: 7, cardPath: '../../public/assets/cintron_garrett.jpg', faceUp: false, matched: false }, 
+    { cardID: 8, cardPath: '../../public/assets/cox_nathan.jpg', faceUp: false, matched: false }, 
+    { cardID: 9, cardPath: '../../public/assets/eivy_lena.jpg', faceUp: false, matched: false }, 
+    { cardID: 10, cardPath: '../../public/assets/martin_andre.jpg', faceUp: false, matched: false }, 
+    { cardID: 11, cardPath: '../../public/assets/moore_ashley.jpeg', faceUp: false, matched: false }, 
+    { cardID: 12, cardPath: '../../public/assets/myers_tina.jpg', faceUp: false, matched: false }, 
+    { cardID: 13, cardPath: '../../public/assets/panek_simon.jpg', faceUp: false, matched: false }, 
+    { cardID: 14, cardPath: '../../public/assets/penning_jeremy.jpeg', faceUp: false, matched: false }, 
+    { cardID: 15, cardPath: '../../public/assets/ravenmoore_matt.jpeg', faceUp: false, matched: false }, 
+    { cardID: 16, cardPath: '../../public/assets/ringer_tahmina.jpeg', faceUp: false, matched: false }, 
+    { cardID: 17, cardPath: '../../public/assets/strasner_sara.jpg', faceUp: false, matched: false } 
   ]
 
 
@@ -70,7 +70,7 @@ const generateRandomGame = (images) => { // takes in images from preloaded array
 console.log('GAME-STATE generateRandomGame ', {randomArray});
 
   randomArray.forEach (number => { //uses the random numbers to assign images to the new board
-    imageList.push(images(number));
+    imageList.push(images[number]);
   })
 
 console.log('GAME-STATE generateRandomGame ', {imageList});
@@ -81,7 +81,7 @@ console.log('GAME-STATE generateRandomGame ', {duplicateList});
 
   for (let i = duplicateList.length - 1; i > 0; i--){
     const j = Math.floor(Math.random() * i);
-    const temp = array[i];
+    const temp = duplicateList[i];
     duplicateList[i] = duplicateList[j];
     duplicateList[j] = temp;
   }
@@ -95,9 +95,9 @@ console.log('GAME-STATE generateRandomGame ', {newGame});
 
 const getRandomIntegers = (high) => { // creates an array of 8 random integers between 1 and the number of pictures inclusive
   let randomArray = [];
-  while (randomArray.length < 9) {
+  while (randomArray.length < 8) {
     let temp = Math.floor(Math.random() * (high +1));
-    if(Array.indexOf(temp) === -1) randomArray.push(temp);
+    if(randomArray.indexOf(temp) === -1) randomArray.push(temp);
   }
   return randomArray;
 }
@@ -119,13 +119,14 @@ const gameSwitchboard = (state=initialState, action) => {
       //- if not a match then flip both cards after 2 seconds
 
       console.log('GAME-STATE gameSwitchboard ', {payload});
+      console.log('current state in FLIP-CARD: ', state)
 
       let updatedGameBoard = state.currentBoard.map(card => { // looks through current game board
         if(card.cardID === payload){ //if clicked card matches a card in the game board do the following
           if(card.faceUP === true) return; //if the clicked card is already face up, do nothing
           if(card.matched === true) return; //if the card is already matched, do nothing
           if(card.faceUp === false) { //if the card is not currently face up do the following
-            state.currentBoard.map(cardTwo => { //look through all game cards
+            state.currentBoard.forEach(cardTwo => { //look through all game cards
               if(cardTwo.faceUp === true && cardTwo.matched !== true){ //if another card is faceup and not already matched do the following
                 if(card.cardID === cardTwo.cardID){ //if the clicked card and the faceup card match do the following
                   card.matched = true; //set the clicked card's matched to true
@@ -147,8 +148,9 @@ const gameSwitchboard = (state=initialState, action) => {
 
       console.log('GAME-STATE gameSwitchboard ', {updatedGameBoard});
 
-      return { ...state, currentBoard: updatedGameBoard }; //should update the state of the card clicked on 
-
+      // return { ...state, currentBoard: updatedGameBoard }; //should update the state of the card clicked on 
+      return state;
+      
     case 'CHECK-GAME-WON':
       //TODO: check if all images matched: true
       let gameCheck = state.currentBoard.map(card => {
