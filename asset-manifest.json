@@ -1,20 +1,33 @@
 {
   "files": {
-    "main.css": "/matchbox/static/css/main.518ce94c.chunk.css",
-    "main.js": "/matchbox/static/js/main.b13ae13d.chunk.js",
-    "main.js.map": "/matchbox/static/js/main.b13ae13d.chunk.js.map",
+    "main.js": "/matchbox/static/js/main.aa329ee0.chunk.js",
+    "main.js.map": "/matchbox/static/js/main.aa329ee0.chunk.js.map",
     "runtime-main.js": "/matchbox/static/js/runtime-main.747a0890.js",
     "runtime-main.js.map": "/matchbox/static/js/runtime-main.747a0890.js.map",
-    "static/js/2.57186279.chunk.js": "/matchbox/static/js/2.57186279.chunk.js",
-    "static/js/2.57186279.chunk.js.map": "/matchbox/static/js/2.57186279.chunk.js.map",
+    "static/js/2.53b41330.chunk.js": "/matchbox/static/js/2.53b41330.chunk.js",
+    "static/js/2.53b41330.chunk.js.map": "/matchbox/static/js/2.53b41330.chunk.js.map",
     "index.html": "/matchbox/index.html",
-    "static/css/main.518ce94c.chunk.css.map": "/matchbox/static/css/main.518ce94c.chunk.css.map",
-    "static/js/2.57186279.chunk.js.LICENSE.txt": "/matchbox/static/js/2.57186279.chunk.js.LICENSE.txt"
+    "static/js/2.53b41330.chunk.js.LICENSE.txt": "/matchbox/static/js/2.53b41330.chunk.js.LICENSE.txt",
+    "static/media/alvarado_mariko.c8a4adbd.jpeg": "/matchbox/static/media/alvarado_mariko.c8a4adbd.jpeg",
+    "static/media/ayoub_dina.1415fe03.jpeg": "/matchbox/static/media/ayoub_dina.1415fe03.jpeg",
+    "static/media/barcenas_ricardo.3f88d9f4.jpg": "/matchbox/static/media/barcenas_ricardo.3f88d9f4.jpg",
+    "static/media/billakanti_sowmya.19020905.jpg": "/matchbox/static/media/billakanti_sowmya.19020905.jpg",
+    "static/media/brown_aysia.2ba72247.jpg": "/matchbox/static/media/brown_aysia.2ba72247.jpg",
+    "static/media/burris_stacy.deef396d.jpg": "/matchbox/static/media/burris_stacy.deef396d.jpg",
+    "static/media/cintron_garrett.eba9d4b0.jpg": "/matchbox/static/media/cintron_garrett.eba9d4b0.jpg",
+    "static/media/cox_nathan.5bac55cd.jpg": "/matchbox/static/media/cox_nathan.5bac55cd.jpg",
+    "static/media/eivy_lena.73d3d9b3.jpg": "/matchbox/static/media/eivy_lena.73d3d9b3.jpg",
+    "static/media/martin_andre.e65bebe9.jpg": "/matchbox/static/media/martin_andre.e65bebe9.jpg",
+    "static/media/moore_ashley.ec2c055b.jpeg": "/matchbox/static/media/moore_ashley.ec2c055b.jpeg",
+    "static/media/myers_tina.97da4b11.jpg": "/matchbox/static/media/myers_tina.97da4b11.jpg",
+    "static/media/panek_simon.32bd37d8.jpg": "/matchbox/static/media/panek_simon.32bd37d8.jpg",
+    "static/media/ravenmoore_matt.b7733156.jpg": "/matchbox/static/media/ravenmoore_matt.b7733156.jpg",
+    "static/media/ringer_tahmina.2b03f8e3.jpeg": "/matchbox/static/media/ringer_tahmina.2b03f8e3.jpeg",
+    "static/media/strasner_sara.dbe345aa.jpg": "/matchbox/static/media/strasner_sara.dbe345aa.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.747a0890.js",
-    "static/js/2.57186279.chunk.js",
-    "static/css/main.518ce94c.chunk.css",
-    "static/js/main.b13ae13d.chunk.js"
+    "static/js/2.53b41330.chunk.js",
+    "static/js/main.aa329ee0.chunk.js"
   ]
 }
