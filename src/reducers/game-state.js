@@ -121,35 +121,93 @@ const gameSwitchboard = (state=initialState, action) => {
       console.log('GAME-STATE gameSwitchboard ', {payload});
       console.log('current state in FLIP-CARD: ', state)
 
-      let updatedGameBoard = state.currentBoard.map(card => { // looks through current game board
+      // let updatedGameBoard = state.currentBoard.map(card => { // looks through current game board
+      //   // console.log('card', card, 'payload', payload);
+      //   if(card.cardID !== payload) return card;
+      //   if(card.cardID === payload){ //if clicked card matches a card in the game board do the following
+      //     // console.log('CARD Matched ', card.cardID); //testing only not part of algo
+      //     // return {...card, faceUp: true}; //testing only, this works not part of algo
+      //     if(card.faceUP === true) return card; //if the clicked card is already face up, do nothing
+      //     if(card.matched === true) return card; //if the card is already matched, do nothing
+      //       if(card.faceUp === false) { //if the card is not currently face up do the following
+      //         return { ... card, faceUp: true };
+      //       }
+      //         // return state.currentBoard.map(cardTwo => { //look through all game cards
+      //         // if(cardTwo.faceUp === true && cardTwo.matched !== true){ //if another card is faceup and not already matched do the following
+      //         //   if(card.cardID === cardTwo.cardID){ //if the clicked card and the faceup card match do the following
+      //         //     card.matched = true; //set the clicked card's matched to true
+      //         //     card.faceUp = true; //set the clicked card's faceUp to true
+      //         //     return; //exit map (this might not be correct)
+                
+      //         //   } else { //if the clicked card and the face up card do not match do th following
+      //         //     card.faceUp = false; //turn clicked card face down
+      //         //     cardTwo.faceUp = false; //turn the other card face down
+      //         //     return; //exit map (this may be wrong)
+      //         //   }
+      //         // } else { //if no other card is already face up, leave the clicked card face up
+      //         //   card.faceUp = true; 
+      //         //   return; //exit map
+      //         // }
+      //       // })
+      //     // }
+      //   }
+      // })
+
+
+      // let location;
+
+      //AS WRITTEN: will allow cards to flip back and forth will not check for pairs or game ending solutions
+      let updatedGameBoard = state.currentBoard.map((card, idx) => { // looks through current game board
+        // console.log('card', card, 'payload', payload);
+        if(card.cardID !== payload) return card;
         if(card.cardID === payload){ //if clicked card matches a card in the game board do the following
-          if(card.faceUP === true) return; //if the clicked card is already face up, do nothing
-          if(card.matched === true) return; //if the card is already matched, do nothing
-          if(card.faceUp === false) { //if the card is not currently face up do the following
-            state.currentBoard.forEach(cardTwo => { //look through all game cards
-              if(cardTwo.faceUp === true && cardTwo.matched !== true){ //if another card is faceup and not already matched do the following
-                if(card.cardID === cardTwo.cardID){ //if the clicked card and the faceup card match do the following
-                  card.matched = true; //set the clicked card's matched to true
-                  card.faceUp = true; //set the clicked card's faceUp to true
-                  return; //exit map (this might not be correct)
-                } else { //if the clicked card and the face up card do not match do th following
-                  card.faceUp = false; //turn clicked card face down
-                  cardTwo.faceUp = false; //turn the other card face down
-                  return; //exit map (this may be wrong)
-                }
-              } else { //if no other card is already face up, leave the clicked card face up
-                card.faceUp = true; 
-                return; //exit map
-              }
-            })
+          // location = idx;
+          // console.log('CARD Matched ', card.cardID); //testing only not part of algo
+          // return {...card, faceUp: true}; //testing only, this works not part of algo
+          if(card.faceUP === true) return card; //if the clicked card is already face up, do nothing
+          if(card.matched === true) return card; //if the card is already matched, do nothing
+            if(card.faceUp === false) { //if the card is not currently face up do the following
+              return { ... card, faceUp: true };
+            } else {
+              return { ... card, faceUp: false};
+            }
           }
-        }
-      })
+       })
+
+      //  if(updatedGameBoard[location].matched !== true){
+      //    return 
+      //  }
+      // console.log('updatedGameBoard[location]', updatedGameBoard[location]);
+
+
+            // if(card.faceUp === false) { //if the card is not currently face up do the following
+            //   return { ... card, faceUp: true };
+            // }
+
+              // return state.currentBoard.map(cardTwo => { //look through all game cards
+              // if(cardTwo.faceUp === true && cardTwo.matched !== true){ //if another card is faceup and not already matched do the following
+              //   if(card.cardID === cardTwo.cardID){ //if the clicked card and the faceup card match do the following
+              //     card.matched = true; //set the clicked card's matched to true
+              //     card.faceUp = true; //set the clicked card's faceUp to true
+              //     return; //exit map (this might not be correct)
+                
+              //   } else { //if the clicked card and the face up card do not match do th following
+              //     card.faceUp = false; //turn clicked card face down
+              //     cardTwo.faceUp = false; //turn the other card face down
+              //     return; //exit map (this may be wrong)
+              //   }
+              // } else { //if no other card is already face up, leave the clicked card face up
+              //   card.faceUp = true; 
+              //   return; //exit map
+              // }
+            // })
+          // }
+    
 
       console.log('GAME-STATE gameSwitchboard ', {updatedGameBoard});
 
-      // return { ...state, currentBoard: updatedGameBoard }; //should update the state of the card clicked on 
-      return state;
+      return { ...state, currentBoard: updatedGameBoard }; //should update the state of the card clicked on 
+      // return state;
       
     case 'CHECK-GAME-WON':
       //TODO: check if all images matched: true
