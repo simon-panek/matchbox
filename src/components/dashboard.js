@@ -9,11 +9,15 @@ const mapDispatchToProps = { refresh };
 
 function Dashboard(props){
 
+  const refreshFunction = ()=>{
+    props.refresh();
+  }
+
   return(
     <section>
       <div className="timer">Timer</div>
       <div className="game-moves">Number of Moves: {props.gameMoves / 2}</div>
-      <div className="refresh-icon">Refresh icon</div>
+      <div className="refresh-icon" onClick={refreshFunction()}>Refresh icon</div>
     </section>
   )
 }

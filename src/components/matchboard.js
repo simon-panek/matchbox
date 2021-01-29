@@ -4,11 +4,15 @@ import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {newGame, flipCard} from '../reducers/game-state'
 // import {reducerFunctions} from '/reducers/'
+// import hardImage from '../assets/'
+
+// 
 
 //reducer functions go here
 const mapDispatchToProps = {newGame, flipCard};
 
 function MatchBoard(props){
+  console.log('props from Matchboard', props)
 
   useEffect(()=>{
     props.newGame();
@@ -35,7 +39,9 @@ function MatchBoard(props){
 
           <section key={index} id="gameboard-cell-parent">
 
-            <section onClick={()=>tileSelector(tileData.cardID)} id="gameboard-cell"><img src={tileData.cardPath}></img>cell</section>
+            <section onClick={()=>tileSelector(tileData.cardID)} id="gameboard-cell">
+              <img src={tileData.cardPath} alt="match-images"/>
+            </section>
               
           </section>
         ))}

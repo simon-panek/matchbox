@@ -1,5 +1,24 @@
 // which cards are face up, face down. Which are currently matched. image links
 
+import alvarado_mariko from './../assets/alvarado_mariko.jpeg'
+import ayoub_dina from './../assets/ayoub_dina.jpeg'
+import barcenas_ricardo from './../assets/barcenas_ricardo.jpg'
+import billakanti_sowmya from './../assets/billakanti_sowmya.jpg'
+import brown_aysia from './../assets/brown_aysia.jpg'
+import burris_stacy from './../assets/burris_stacy.jpg'
+import cintron_garrett from './../assets/cintron_garrett.jpg'
+import cox_nathan from './../assets/cox_nathan.jpg'
+import eivy_lena from './../assets/eivy_lena.jpg'
+import martin_andre from './../assets/martin_andre.jpg'
+import moore_ashley from './../assets/moore_ashley.jpeg'
+import myers_tina from './../assets/myers_tina.jpg'
+import panek_simon from './../assets/panek_simon.jpg'
+import penning_jeremy from './../assets/penning_jeremy.jpeg'
+import ravenmoore_matt from './../assets/ravenmoore_matt.jpg'
+import ringer_tahmina from './../assets/ringer_tahmina.jpeg'
+import strasner_sara from './../assets/strasner_sara.jpg'
+
+
 let initialState = {
   currentBoard: [], // store the cards/images that were selected for this particular game. Each card should be an object `{ cardID: ###, cardPath: 'folder/place', faceUp: bool, matched: bool }
   // gameStartTime: '', //time stamp the first card flip
@@ -10,23 +29,23 @@ let initialState = {
 }
 
 const  images = [
-    { cardID: 1, cardPath: '../../public/assets/alvarado_mariko.jpeg', faceUp: false, matched: false }, 
-    { cardID: 2, cardPath: '../../public/assets/ayoub_dina.jpeg', faceUp: false, matched: false }, 
-    { cardID: 3, cardPath: '../../public/assets/barcenas_ricardo.jpg', faceUp: false, matched: false }, 
-    { cardID: 4, cardPath: '../../public/assets/billakanti_sowmya.jpg', faceUp: false, matched: false }, 
-    { cardID: 5, cardPath: '../../public/assets/brown_aysia.jpg', faceUp: false, matched: false }, 
-    { cardID: 6, cardPath: '../../public/assets/burris_stacy.jpg', faceUp: false, matched: false }, 
-    { cardID: 7, cardPath: '../../public/assets/cintron_garrett.jpg', faceUp: false, matched: false }, 
-    { cardID: 8, cardPath: '../../public/assets/cox_nathan.jpg', faceUp: false, matched: false }, 
-    { cardID: 9, cardPath: '../../public/assets/eivy_lena.jpg', faceUp: false, matched: false }, 
-    { cardID: 10, cardPath: '../../public/assets/martin_andre.jpg', faceUp: false, matched: false }, 
-    { cardID: 11, cardPath: '../../public/assets/moore_ashley.jpeg', faceUp: false, matched: false }, 
-    { cardID: 12, cardPath: '../../public/assets/myers_tina.jpg', faceUp: false, matched: false }, 
-    { cardID: 13, cardPath: '../../public/assets/panek_simon.jpg', faceUp: false, matched: false }, 
-    { cardID: 14, cardPath: '../../public/assets/penning_jeremy.jpeg', faceUp: false, matched: false }, 
-    { cardID: 15, cardPath: '../../public/assets/ravenmoore_matt.jpeg', faceUp: false, matched: false }, 
-    { cardID: 16, cardPath: '../../public/assets/ringer_tahmina.jpeg', faceUp: false, matched: false }, 
-    { cardID: 17, cardPath: '../../public/assets/strasner_sara.jpg', faceUp: false, matched: false } 
+    { cardID: 1, cardPath: alvarado_mariko, faceUp: false, matched: false }, 
+    { cardID: 2, cardPath: ayoub_dina, faceUp: false, matched: false }, 
+    { cardID: 3, cardPath: barcenas_ricardo, faceUp: false, matched: false }, 
+    { cardID: 4, cardPath: billakanti_sowmya, faceUp: false, matched: false }, 
+    { cardID: 5, cardPath: brown_aysia, faceUp: false, matched: false }, 
+    { cardID: 6, cardPath: burris_stacy, faceUp: false, matched: false }, 
+    { cardID: 7, cardPath: cintron_garrett, faceUp: false, matched: false }, 
+    { cardID: 8, cardPath: cox_nathan, faceUp: false, matched: false }, 
+    { cardID: 9, cardPath: eivy_lena, faceUp: false, matched: false }, 
+    { cardID: 10, cardPath: martin_andre, faceUp: false, matched: false }, 
+    { cardID: 11, cardPath: moore_ashley, faceUp: false, matched: false }, 
+    { cardID: 12, cardPath: myers_tina, faceUp: false, matched: false }, 
+    { cardID: 13, cardPath: panek_simon, faceUp: false, matched: false }, 
+    { cardID: 14, cardPath: penning_jeremy, faceUp: false, matched: false }, 
+    { cardID: 15, cardPath: ravenmoore_matt, faceUp: false, matched: false }, 
+    { cardID: 16, cardPath: ringer_tahmina, faceUp: false, matched: false }, 
+    { cardID: 17, cardPath: strasner_sara, faceUp: false, matched: false } 
   ]
 
 
@@ -150,7 +169,7 @@ const gameSwitchboard = (state=initialState, action) => {
 
       // return { ...state, currentBoard: updatedGameBoard }; //should update the state of the card clicked on 
       return state;
-      
+
     case 'CHECK-GAME-WON':
       //TODO: check if all images matched: true
       let gameCheck = state.currentBoard.map(card => {
