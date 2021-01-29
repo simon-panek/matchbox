@@ -55,6 +55,7 @@ const dashboard = (state = initialState, action) => {
         if(payload.faceUp !== true) {
           return {...state, gameMoves: state.gameMoves + 1};
         };
+        return {...state}
 
       case 'REFRESH':
         return initialState;
