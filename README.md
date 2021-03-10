@@ -13,7 +13,7 @@
 
 ## How to Play
 
-- Play [Matchbox](gh-pages) here.
+- Play [Matchbox](https://simon-panek.github.io/matchbox/) here.
 - See the [code](https://github.com/simon-panek/matchbox) here.
 
 ## Technology Used
