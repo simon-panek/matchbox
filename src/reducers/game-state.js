@@ -18,7 +18,6 @@ import ravenmoore_matt from './../assets/ravenmoore_matt.jpg'
 import ringer_tahmina from './../assets/ringer_tahmina.jpeg'
 import strasner_sara from './../assets/strasner_sara.jpg'
 
-
 let initialState = {
   currentBoard: [], // store the cards/images that were selected for this particular game. Each card should be an object `{ cardID: ###, cardPath: 'folder/place', faceUp: bool, matched: bool }
   // gameStartTime: '', //time stamp the first card flip
@@ -47,7 +46,6 @@ const  images = [
     { cardID: 16, cardPath: ringer_tahmina, faceUp: false, matched: false }, 
     { cardID: 17, cardPath: strasner_sara, faceUp: false, matched: false } 
   ]
-
 
 export const isGameWon = () => { //possibly in a useEffect that runs after every render
   return {
@@ -84,19 +82,19 @@ export const resetBoard = () => {
 const generateRandomGame = (images) => { // takes in images from preloaded array
   let imageList = [];
 
-  let randomArray = getRandomIntegers(images.length); //uses helper function to create an array of random numbers between 1 and the length of the images array
+  let randomArray = getRandomIntegers(images.length-1); //uses helper function to create an array of random numbers between 1 and the length of the images array
 
-console.log('GAME-STATE generateRandomGame ', {randomArray});
+  // console.log('GAME-STATE generateRandomGame ', {randomArray});
 
   randomArray.forEach (number => { //uses the random numbers to assign images to the new board
     imageList.push(images[number]);
-  })
+  });
 
-console.log('GAME-STATE generateRandomGame ', {imageList});
+  // console.log('GAME-STATE generateRandomGame ', {imageList});
 
   let duplicateList = imageList.concat(imageList); //duplicates the random 8 images into a single array 
 
-console.log('GAME-STATE generateRandomGame ', {duplicateList});
+  // console.log('GAME-STATE generateRandomGame ', {duplicateList});
 
   for (let i = duplicateList.length - 1; i > 0; i--){
     const j = Math.floor(Math.random() * i);
@@ -107,7 +105,7 @@ console.log('GAME-STATE generateRandomGame ', {duplicateList});
 
   let newGame = duplicateList;
 
-console.log('GAME-STATE generateRandomGame ', {newGame});
+  // console.log('GAME-STATE generateRandomGame ', {newGame});
 
   return newGame;
 }
@@ -115,13 +113,13 @@ console.log('GAME-STATE generateRandomGame ', {newGame});
 const getRandomIntegers = (high) => { // creates an array of 8 random integers between 1 and the number of pictures inclusive
   let randomArray = [];
   while (randomArray.length < 8) {
-    let temp = Math.floor(Math.random() * (high +1));
+    let temp = Math.floor(Math.random() * (high + 1));
     if(randomArray.indexOf(temp) === -1) randomArray.push(temp);
   }
   return randomArray;
 }
 
-const gameSwitchboard = (state=initialState, action) => {
+const gameSwitchboard = (state = initialState, action) => {
   let { type, payload } = action;
   switch (type) {
     case 'NEW-GAME':
@@ -133,11 +131,20 @@ const gameSwitchboard = (state=initialState, action) => {
 
     case 'FLIP-CARD':
       //TODO: check if current card is flipped, if yes do nothing
+      if (payload.faceUp === false) {
+        // flip the card
+        payload.faceUp = true;
+
       //- check if any other card is flipped but not currently matched, if yes check for match, if no just flip card
+        let checkStatus = state.currentBoard.reduce((acc, val, idx) => {
+          return (val.faceUp === true && val.matched === false) ? acc = val.cardID : payload.faceUp = false;          
+        });
+        
+      }
       //- if a new match leave card face up and change to matched
       //- if not a match then flip both cards after 2 seconds
 
-      console.log('GAME-STATE gameSwitchboard ', {payload});
+      console.log('GAME-STATE Flip-card', {payload});
       console.log('current state in FLIP-CARD: ', state)
 
       // let updatedGameBoard = state.currentBoard.map(card => { // looks through current game board
@@ -186,9 +193,9 @@ const gameSwitchboard = (state=initialState, action) => {
           if(card.faceUP === true) return card; //if the clicked card is already face up, do nothing
           if(card.matched === true) return card; //if the card is already matched, do nothing
             if(card.faceUp === false) { //if the card is not currently face up do the following
-              return { ... card, faceUp: true };
+              return { ...card, faceUp: true };
             } else {
-              return { ... card, faceUp: false};
+              return { ...card, faceUp: false};
             }
           }
        })
