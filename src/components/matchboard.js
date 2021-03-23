@@ -6,8 +6,6 @@ import {newGame, flipCard} from '../reducers/game-state'
 // import {reducerFunctions} from '/reducers/'
 // import hardImage from '../assets/'
 
-// 
-
 //reducer functions go here
 const mapDispatchToProps = {newGame, flipCard};
 
@@ -16,9 +14,7 @@ function MatchBoard(props){
 
   useEffect(()=>{
     props.newGame();
-  }, [])
-
-
+  }, []);
 
   const tileSelector=(cardID)=>{
     console.log({cardID});
@@ -30,19 +26,15 @@ function MatchBoard(props){
     props.flipCard(cardID)
   }
 
-
   return(
     <section >
       <section>Proof of Life</section>
       <section id="gameboard">
         {props.gameboardState.map((tileData, index)=>(
-
           <section key={index} id="gameboard-cell-parent">
-
-            <section onClick={()=>tileSelector(tileData.cardID)} id="gameboard-cell">
+            <section onClick={()=>tileSelector(tileData)} id="gameboard-cell">
               <img src={tileData.cardPath} alt="match-images"/>
             </section>
-              
           </section>
         ))}
 
