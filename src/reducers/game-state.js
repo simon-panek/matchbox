@@ -171,14 +171,17 @@ const gameSwitchboard = (state = initialState, action) => {
       //AS WRITTEN: will allow cards to flip back and forth will not check for pairs or game ending solutions
       let updatedGameBoard = state.currentBoard.map((card, idx) => { // looks through current game board
         // console.log('card', card, 'payload', payload);
-        return (payload.cardID === card.cardID && payload.faceUp === false) ? { ...card, faceUp: true } : card;
+        return (payload.cardID === card.cardID) ? { ...card, faceUp: true } : card;
       });
         
       // check if any other card is flipped but not currently matched, if yes check for match, if no just flip card
-      let gameboard2 = updatedGameBoard.map(card => {
-        if (card.faceUp === true) {
-          if (payload.cardID === card.cardID + 100 || payload.cardID === card.cardID - 100) {
-
+      let matchID;
+      let gameBoard2 = updatedGameBoard.map(card => {
+        if (card.faceUp === true && payload.cardID !== card.cardID) {
+          console.log('CHECKING FACEUP CARD'); 
+          if (payload.pairID === card.pairID) {
+            console.log('CHANGING FACEUP PAIRED CARD TO TRUE');
+            matchID = card.pairID;
             return { ...card, matched: true };
           } else {
             return card;
@@ -186,26 +189,24 @@ const gameSwitchboard = (state = initialState, action) => {
         } return card;
       })
 
-      let gameboard3 = gameboard2.map(card => {
+      console.log({matchID});
 
-        if (payload.pairID === card.pairID && card.matched === false) {
-          // if (card.match === true) {
-            console.log('Payload 1:', payload.cardID, 'Card 1:', card.cardID);
-            return { ...card, matched: true };
-          // }
-        } 
-        if (payload.cardID === (card.cardID - 100) && card.faceUp === true) {
-          // if (card.match === true) {
-            console.log('Payload 2:', payload.cardID, 'Card 2:', card.cardID);
+      let gameBoard3 = gameBoard2.map(card => {
 
-            return { ...card, matched: true };
-          // }
-          } 
+        if(card.cardID === payload.cardID && card.faceUp === true && card.pairID === matchID) {
+          console.log('flip pair matched to true')
+          return { ...card, matched: true };
+        }
+        // if(card.pairID === payload.pairID && card.cardID === payload.cardID - 100 && card.faceUp === true) {
+        //   console.log('-100 flip pair matched to true')
+        //   return { ...card, matched: true };
+        // }
           else {
             return card;
           }
       });
 
+      console.log({gameBoard3});
       
 
       console.log('State.currentBoard:', state.currentBoard);
@@ -242,7 +243,7 @@ const gameSwitchboard = (state = initialState, action) => {
 
       console.log('GAME-STATE gameSwitchboard ', { updatedGameBoard });
 
-      return { ...state, currentBoard: gameboard3 }; //should update the state of the card clicked on 
+      return { ...state, currentBoard: gameBoard3 }; //should update the state of the card clicked on 
     // return state;
 
     case 'CHECK-GAME-WON':
