@@ -93,7 +93,7 @@ const generateRandomGame = (images) => { // Takes in images from preloaded array
 
   let duplicateList = imageList.concat(imageList2); //duplicates the random 8 images into a single array 
 
-  console.log('GAME-STATE | Duplicate List ', { duplicateList });
+  // console.log('GAME-STATE | Duplicate List ', { duplicateList });
 
   // This loop mixes the duplicate list up.
   for (let i = duplicateList.length - 1; i > 0; i--) {
@@ -128,8 +128,8 @@ const gameSwitchboard = (state = initialState, action) => {
       //- if a new match leave card face up and change to matched
       //- if not a match then flip both cards after 2 seconds
 
-      console.log('GAME-STATE Flip-card', { payload });
-      console.log('current state in FLIP-CARD: ', state)
+      // console.log('GAME-STATE Flip-card', { payload });
+      // console.log('current state in FLIP-CARD: ', state)
 
       //AS WRITTEN: will allow cards to flip back and forth will not check for pairs or game ending solutions
       let updatedGameBoard = state.currentBoard.map((card, idx) => { // looks through current game board
@@ -140,9 +140,9 @@ const gameSwitchboard = (state = initialState, action) => {
       let matchID;
       let gameBoard2 = updatedGameBoard.map(card => {
         if (card.faceUp === true && payload.cardID !== card.cardID) {
-          console.log('CHECKING FACEUP CARD'); 
+          // console.log('CHECKING FACEUP CARD'); 
           if (payload.pairID === card.pairID) {
-            console.log('CHANGING FACEUP PAIRED CARD TO TRUE');
+            // console.log('CHANGING FACEUP PAIRED CARD TO TRUE');
             matchID = card.pairID;
             return { ...card, matched: true };
           } else {
@@ -151,11 +151,11 @@ const gameSwitchboard = (state = initialState, action) => {
         } return card;
       })
 
-      console.log({matchID});
+      // console.log({matchID});
 
       let gameBoard3 = gameBoard2.map(card => {
         if(card.cardID === payload.cardID && card.faceUp === true && card.pairID === matchID) {
-          console.log('flip pair matched to true')
+          // console.log('flip pair matched to true')
           return { ...card, matched: true };
         }
           else {
@@ -163,9 +163,9 @@ const gameSwitchboard = (state = initialState, action) => {
           }
       });
 
-      console.log({gameBoard3});
-      console.log('State.currentBoard:', state.currentBoard);
-      console.log('GAME-STATE gameSwitchboard ', { updatedGameBoard });
+      // console.log({gameBoard3});
+      // console.log('State.currentBoard:', state.currentBoard);
+      // console.log('GAME-STATE gameSwitchboard ', { updatedGameBoard });
 
       return { ...state, currentBoard: gameBoard3}; //should update the state of the card clicked on 
     // return state;
@@ -176,7 +176,7 @@ const gameSwitchboard = (state = initialState, action) => {
         return (card.matched === false) ? false : true;
       })
 
-      console.log('GAME-STATE gameSwitchboard: ')
+      // console.log('GAME-STATE gameSwitchboard: ')
 
       return { ...state, gameWon: gameCheck }; //updated the gameWon state
 
