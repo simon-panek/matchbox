@@ -17,7 +17,7 @@ function MatchBoard(props){
   }, []);
 
   const tileSelector=(cardID)=>{
-    console.log({cardID});
+    // console.log({cardID});
     // (if) first selection ? send call to start timer and flip card : (else) flip card
     // (if) faceup === true ? do not increment counter : (else) increment counter
     // (if) 2 selections are not the same ? flip them back : (else) leave them flipped (and change color?)
